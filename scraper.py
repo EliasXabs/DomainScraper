@@ -11,4 +11,6 @@ exists = requests.get('http://www.google.com')
 if exists :
     print("Exists")
 else :
-    print("Does not exist")
+    print("Error : Please enter a domain that exists")
+    print("Terminating . . .")
+    exit()
