@@ -1,6 +1,7 @@
 import re
 import argparse
 import requests
+from urllib.request import urlopen
 
 def swapsubdomain(sdomain, subdomain):
     protocol = re.match(r"https?:\/\/", sdomain).group()
@@ -77,3 +78,13 @@ with directories as line:
         except:
             pass
         l = line.readline()
+
+html = urlopen(domain).read().decode()
+f_output = open("./Output/files_output.bat", "w")
+
+link = r'<a\s+(?:[^>]*?\s+)?href="([^"]*)"'
+matches = re.findall(link, html)
+for link in list(matches):
+    f_output.write(link)
+
+print("Done")
