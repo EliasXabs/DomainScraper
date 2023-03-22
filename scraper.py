@@ -22,11 +22,11 @@ if not re.match(http_p, domain) :
         print("Please enter a valid answer")
         exit()
 
-if not re.match(r"\b\/www\.", domain) :
+if not re.findall(r"\/www\.", domain) :
     protocol = re.match(http_p, domain).group()
     domain = protocol+"www."+re.sub(http_p, "", domain)
 
-if not re.match(r"\.com$", domain):
+if not re.findall(r"\.com$", domain):
     domain = domain+".com"
 
 print("Checking:",domain)
