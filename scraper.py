@@ -16,14 +16,20 @@ if not re.match(http_p, domain) :
     sec = input("Is the protocol secure? (y/n): ")
     if sec.lower() == "y" :
         domain = "https://"+domain
-    elif sec.lower == "n" :
+    elif sec.lower() == "n" :
         domain = "http://"+domain
     else:
         print("Please enter a valid answer")
+        exit()
 
 if not re.match(r"\b\/www\.", domain) :
     protocol = re.match(http_p, domain).group()
     domain = protocol+"www."+re.sub(http_p, "", domain)
+
+if not re.match(r"\.com$", domain):
+    domain = domain+".com"
+
+print("Checking:",domain)
 
 exists = requests.get(domain)
 
