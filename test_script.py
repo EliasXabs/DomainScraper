@@ -71,13 +71,15 @@ with directories as line:
         except:
             pass
         l = line.readline()
+try:
+    html = urlopen(domain).read().decode()
+    f_output = open("./Output/files_output.bat", "w")
 
-html = urlopen(domain).read().decode()
-f_output = open("./Output/files_output.bat", "w")
-
-link = r'<a\s+(?:[^>]*?\s+)?href="([^"]*)"'
-matches = re.findall(link, html)
-for link in list(matches):
-    f_output.write(link)
+    link = r'<a\s+(?:[^>]*?\s+)?href="([^"]*)"'
+    matches = re.findall(link, html)
+    for link in list(matches):
+        f_output.write(link)
+except:
+    print("Forbidden access")
 
 print("Done")
