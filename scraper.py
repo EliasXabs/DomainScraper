@@ -10,7 +10,9 @@ except :
     print ("Please enter a valid domain") 
     exit()
 
-if not re.match(r"^https?:\/\/", domain) :
+http_p = r"^https?:\/\/"
+
+if not re.match(http_p, domain) :
     sec = input("Is the protocol secure? (y/n): ")
     if sec.lower() == "y" :
         domain = "https://"+domain
@@ -18,6 +20,10 @@ if not re.match(r"^https?:\/\/", domain) :
         domain = "http://"+domain
     else:
         print("Please enter a valid answer")
+
+if not re.match(r"\b\/www\.", domain) :
+    protocol = re.match(http_p, domain).group()
+    domain = protocol+"www."+re.sub(http_p, "", domain)
 
 exists = requests.get(domain)
 
