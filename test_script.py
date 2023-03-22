@@ -61,7 +61,7 @@ directories = open("./Potential/dirs_dictionary.bat", "r")
 d_output = open("./Output/directories_output.bat", "w")
 
 with directories as line:
-    l = line.readline
+    l = line.readline()
     while (l):
         nospace= re.sub(trailing_spaces, "", l)
         swapped = domain+"/"+nospace
