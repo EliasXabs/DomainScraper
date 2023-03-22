@@ -60,3 +60,16 @@ with subdomains as line:
 
         l = line.readline()
 
+directories = open("./Potential/dirs_dictionary.bat", "r")
+d_output = open("./Output/directories_output.bat", "w")
+
+with directories as line:
+    l = line.readline
+    while (l):
+        swapped = domain+"/"+l.rstrip()
+        try:
+            test = requests.get(swapped)
+            d_output.write(swapped+"\n")
+        except:
+            pass
+        l = line.readline()
