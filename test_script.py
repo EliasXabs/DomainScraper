@@ -47,7 +47,7 @@ except :
 
 subdomains = open("./Potential/potential_subdomains.bat", "r")
 s_output = open("./Output/subdomains_output.bat", "w")
-count = 0
+
 with subdomains as line:
     l = line.readline()
     while (l):
@@ -55,12 +55,8 @@ with subdomains as line:
         try :
             test = requests.get(swapped)
             s_output.write(swapped+"\n")
-            print("Found", count)
         except :
-            print("not Found")
-
-        print ("Next Line", count)
-        count += 1
+            pass
 
         l = line.readline()
 
