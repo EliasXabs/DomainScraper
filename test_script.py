@@ -48,10 +48,13 @@ except :
 subdomains = open("./Potential/potential_subdomains.bat", "r")
 s_output = open("./Output/subdomains_output.bat", "w")
 
+trailing_spaces = r'^\s+|\s+$|[^a-zA-Z0-9\s]'
+
 with subdomains as line:
     l = line.readline()
     while (l):
-        swapped = swapsubdomain(domain, l.rstrip())
+        nospace = re.sub(trailing_spaces, "", l)
+        swapped = swapsubdomain(domain, nospace)
         try :
             test = requests.get(swapped)
             s_output.write(swapped+"\n")
@@ -66,7 +69,8 @@ d_output = open("./Output/directories_output.bat", "w")
 with directories as line:
     l = line.readline
     while (l):
-        swapped = domain+"/"+l.rstrip()
+        nospace= re.sub(trailing_spaces, "", l)
+        swapped = domain+"/"+nospace
         try:
             test = requests.get(swapped)
             d_output.write(swapped+"\n")
